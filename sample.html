@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
+  <script>
+   $(document).ready(function(){
+     var vowel_list = 'aeiouAEIOU';
+     var vcount = 0;
+     $("#submit").click(function(){
+       txt=$("#text").val();
+     for(var x = 0; x <txt.length ; x++)
+     {
+    if (vowel_list.indexOf(txt[x]) !== -1)
+    {
+     vcount += 1;
+    }
+     }
+       $.post("http://localhost:3000/login",{txt: vcount}, function(data){
+         if(data==='yes')
+           {
+             alert("Number of Vowels are  " + vcount);
+             location.reload();
+            // $('.demo').html(vcount);
+            //  <br> <p class="demo"> </p>
+           }
+        });
+      });
+   });
+  </script>
+</head>
+  <body>
+  <h3 style="color:purple">Count no of vowels</h3>
+  <input type="Text" id="text">
+  <button type="button" id="submit"> Submit </button>
+  </body>
+</html>
